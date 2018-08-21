@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { List } from 'immutable';
 import { Immutable, compose } from '../../src/index';
 
 describe('compose', () => {
@@ -208,7 +209,6 @@ describe('compose', () => {
                     },
                     role: {
                         type: String,
-                        defaultValue: 'user',
                     },
                 },
             });
@@ -224,6 +224,10 @@ describe('compose', () => {
                     },
                     user: {
                         type: UserRecord,
+                        defaultValue: {
+                            username: 'unknown',
+                            role: 'user',
+                        },
                     },
                 },
             });
@@ -234,7 +238,7 @@ describe('compose', () => {
                 id: 0,
                 name: '',
                 user: {
-                    username: '',
+                    username: 'unknown',
                     role: 'user',
                 },
             });
@@ -458,6 +462,110 @@ describe('compose', () => {
                     version: '',
                 },
                 name: '',
+            });
+        });
+    });
+
+    context('When "genericType" is defined', () => {
+        it('should initialize generic type instance', () => {
+            interface User {
+                name: string;
+            }
+
+            interface GroupPojo {
+                users: User[];
+            }
+
+            interface Group {
+                users: List<User & Immutable>;
+            }
+
+            const UserRecord = compose<User>({
+                name: 'User',
+                properties: {
+                    name: {
+                        type: String,
+                    },
+                },
+            });
+
+            const GroupRecord = compose<Group, GroupPojo>({
+                name: 'Group',
+                properties: {
+                    users: {
+                        type: List,
+                        generic: {
+                            type: UserRecord,
+                        },
+                    },
+                },
+            });
+
+            const g = new GroupRecord({
+                users: [
+                    {
+                        name: 'Mike Wazowski',
+                    },
+                    {
+                        name: 'James P. Sullivan',
+                    },
+                ],
+            });
+
+            expect(g.users.size).to.equal(2);
+            expect(g.users.get(0).toJS()).to.eql({
+                name: 'Mike Wazowski',
+            });
+        });
+
+        it('should initialize generic type instance with default values', () => {
+            interface User {
+                name: string;
+            }
+
+            interface GroupPojo {
+                users: User[];
+            }
+
+            interface Group {
+                users: List<User & Immutable>;
+            }
+
+            const UserRecord = compose<User>({
+                name: 'User',
+                properties: {
+                    name: {
+                        type: String,
+                    },
+                },
+            });
+
+            const GroupRecord = compose<Group, GroupPojo>({
+                name: 'Group',
+                properties: {
+                    users: {
+                        type: List,
+                        generic: {
+                            type: UserRecord,
+                        },
+                    },
+                },
+            });
+
+            const g = new GroupRecord({
+                users: [
+                    {
+                        name: 'Mike Wazowski',
+                    },
+                    {
+                        name: 'James P. Sullivan',
+                    },
+                ],
+            });
+
+            expect(g.users.size).to.equal(2);
+            expect(g.users.get(0).toJS()).to.eql({
+                name: 'Mike Wazowski',
             });
         });
     });

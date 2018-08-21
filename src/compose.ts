@@ -30,8 +30,43 @@ function createTypeInstance(type: Type<any>, value?: any): any {
     return propertyFactory();
 }
 
+function resolveGenericValue(desc?: Descriptor<any>, value?: any): any {
+    if (desc == null) {
+        return value;
+    }
+
+    if (isArray(value)) {
+        return value.map((gValue: any) => {
+            if (desc.generic == null) {
+                return createTypeInstance(desc.type, gValue);
+            }
+
+            return createTypeInstance(desc.type, resolveGenericValue(desc.generic, gValue));
+        });
+    }
+
+    if (isPlainObject(value)) {
+        return reduce(value, (res: any, gValue: any, gField: string) => {
+            const out = res;
+            let resolved;
+
+            if (desc.generic == null) {
+                resolved = createTypeInstance(desc.type, gValue);
+            } else {
+                resolved = createTypeInstance(desc.type, resolveGenericValue(desc.generic, gValue));
+            }
+
+            out[gField] = resolved;
+
+            return out;
+        },            {});
+    }
+
+    return value || desc.defaultValue;
+}
+
 function createPropertyInstance(prop: Property<any>, value?: any): any {
-    if (prop.genericType == null || value == null) {
+    if (prop.generic == null || value == null) {
         if (value == null) {
             if (prop.nullable) {
                 return null;
@@ -41,21 +76,7 @@ function createPropertyInstance(prop: Property<any>, value?: any): any {
         return createTypeInstance(prop.type, value || prop.defaultValue);
     }
 
-    let genericValue;
-
-    if (isArray(value)) {
-        genericValue = value.map(createTypeInstance.bind(null, prop.genericType));
-    } else if (isPlainObject(value)) {
-        genericValue = reduce(value, (res: any, gValue: any, gField: string) => {
-            const out = res;
-
-            out[gField] = createTypeInstance(prop.genericType as Type<any>, gValue);
-
-            return out;
-        },                    {});
-    }
-
-    return createTypeInstance(prop.type, genericValue);
+    return createTypeInstance(prop.type, resolveGenericValue(prop.generic, value));
 }
 
 function getTypeProperties(type: Type<Immutable>): PropertyCollection | undefined {
@@ -98,12 +119,16 @@ export interface Values {
 }
 
 export type TypeFunction<T> = (value?: any) => T;
+
 export type Type<T> = Class<T> | TypeFunction<T>;
 
-export interface Property<T> {
+export interface Descriptor<T> {
     type: Type<T>;
     defaultValue?: any;
-    genericType?: Type<T>;
+    generic?: Descriptor<T>;
+}
+
+export interface Property<T> extends Descriptor<T> {
     nullable?: boolean;
 }
 
@@ -117,7 +142,9 @@ export interface ComposeOptions {
     extends?: Type<any> | Type<any>[];
 }
 
-// tslint:disable-next-line:typedef
+/* 
+ * Creates a deeply nested Record class.
+ */
 export function compose<
     TDef,
     TArgs = TDef
@@ -145,19 +172,17 @@ export function compose<
         });
     }
 
-    let propValues: any;
-
-    propValues = reduce(propTypes, (res: any, prop: Property<any>, name: string) => {
+    const propValues = reduce(propTypes, (res: any, prop: Property<any>, name: string) => {
         const out = res;
 
         // set record prop type
         propTypes[name] = prop;
 
         // set prop default value
-        out[name] = prop.defaultValue ? prop.defaultValue : createTypeInstance(prop.type);
+        out[name] = createTypeInstance(prop.type, prop.defaultValue);
 
         return out;
-    },                  {});
+    },                        {});
 
     return createClass(
         opts.name,
