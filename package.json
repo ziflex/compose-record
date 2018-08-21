@@ -1,0 +1,38 @@
+{
+  "name": "compose-record",
+  "version": "1.0.0",
+  "description": "Type-safe utility library for creating nested Immutable Records",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "repository": "https://github.com/ziflex/compose-record",
+  "author": "Tim Voronov <ziflex@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "clean": "rimraf lib",
+    "build": "npm run clean && tsc -b tsconfig.json",
+    "test": "mocha -r ts-node/register test/**/*.ts"
+  },
+  "peerDependencies": {
+    "immutable": "^3.8.2"
+  },
+  "dependencies": {
+    "is-array": "^1.0.1",
+    "is-plain-obj": "^1.1.0",
+    "reduce": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/is-array": "^1.0.0",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.1.2",
+    "immutable": "^3.8.2",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "ts-node": "^6.2.0",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.9.2",
+    "typedoc": "^0.11.1",
+    "typescript": "^3.0.1"
+  }
+}
