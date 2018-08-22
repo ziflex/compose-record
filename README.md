@@ -7,8 +7,8 @@
 
 ## Motivation
 
-[Immutable.js](https://facebook.github.io/immutable-js/) is a great library. But, unfortunatelly, in v3 it does not well support nested Records, making its usability less pleasant.
-The main purpose of this libary is to make our (my) life easier and reduce amount of boilerplate code by providing robust and typesafe wrapper around [Immutable.Record](https://facebook.github.io/immutable-js/docs/#/Record) class which initializes all other nested Immutable classes. It works like ``fromJS`` but for ``Record``.
+[Immutable.js](https://facebook.github.io/immutable-js/) is a great library. Unfortunatelly, in v3 it does not support nested Records well, making its usability less pleasant.
+The main purpose of this libary is to make our (my) life easier and reduce the amount of boilerplate code by providing a robust and typesafe wrapper around [Immutable.Record](https://facebook.github.io/immutable-js/docs/#/Record) class which initializes all other nested Immutable classes. It works like ``fromJS`` but for ``Record``.
 
 ## Quick start
 
@@ -132,7 +132,7 @@ console.log(p.toJS());
 
 ## Item types
 
-That all works fine with Record and primitive types. But what if we need to have a List or a Map with nested Records? ``compose-record`` has a special option for it: ``items``. 
+That all works fine with Record and primitive types. But what if we need to have a List or a Map with nested Records? ``compose-record`` has a special option for these: ``items``. 
 ``items`` is a nested type descriptor that informs ``compose-record`` how to wrap the underlying values.
 It's optional, by default ``compose-record`` will use a value as it is.
 
