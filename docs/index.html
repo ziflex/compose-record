@@ -72,8 +72,8 @@
 					<a href="http://travis-ci.org/ziflex/compose-record"><img src="https://secure.travis-ci.org/ziflex/compose-record.svg?branch=master" alt="Build Status"></a>
 				<a href="https://coveralls.io/github/ziflex/compose-record"><img src="https://coveralls.io/repos/github/ziflex/compose-record/badge.svg?branch=master" alt="Coverage Status"></a></p>
 				<h2 id="motivation">Motivation</h2>
-				<p><a href="https://facebook.github.io/immutable-js/">Immutable.js</a> is a great library. But, unfortunatelly, in v3 it does not well support nested Records, making its usability less pleasant.
-				The main purpose of this libary is to make our (my) life easier and reduce amount of boilerplate code by providing robust and typesafe wrapper around <a href="https://facebook.github.io/immutable-js/docs/#/Record">Immutable.Record</a> class which initializes all other nested Immutable classes. It works like <code>fromJS</code> but for <code>Record</code>.</p>
+				<p><a href="https://facebook.github.io/immutable-js/">Immutable.js</a> is a great library. Unfortunatelly, in v3 it does not support nested Records well, making its usability less pleasant.
+				The main purpose of this libary is to make our (my) life easier and reduce the amount of boilerplate code by providing a robust and typesafe wrapper around <a href="https://facebook.github.io/immutable-js/docs/#/Record">Immutable.Record</a> class which initializes all other nested Immutable classes. It works like <code>fromJS</code> but for <code>Record</code>.</p>
 				<h2 id="quick-start">Quick start</h2>
 				<p>The following example shows a very basic use of <code>compose-class</code> using nested Records.</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">'compose-record'</span>;
@@ -180,7 +180,7 @@
  */</span>
 </code></pre>
 				<h2 id="item-types">Item types</h2>
-				<p>That all works fine with Record and primitive types. But what if we need to have a List or a Map with nested Records? <code>compose-record</code> has a special option for it: <code>items</code>.
+				<p>That all works fine with Record and primitive types. But what if we need to have a List or a Map with nested Records? <code>compose-record</code> has a special option for these: <code>items</code>.
 					<code>items</code> is a nested type descriptor that informs <code>compose-record</code> how to wrap the underlying values.
 				It&#39;s optional, by default <code>compose-record</code> will use a value as it is.</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { compose } <span class="hljs-keyword">from</span> <span class="hljs-string">'compose-record'</span>;
