@@ -3,7 +3,7 @@ import isArray from 'is-array';
 import isPlainObject from 'is-plain-obj';
 import reduce from 'reduce';
 
-const PROPS_KEY = '__@TYPES__';
+const PROPS_KEY = '__@@DESCRIPTORS@@__';
 
 function isPrimitiveType(input: any): boolean {
     return input === String ||
@@ -79,7 +79,7 @@ function createPropertyInstance(prop: Property<any>, value?: any): any {
     return createTypeInstance(prop.type, resolveGenericValue(prop.items, value));
 }
 
-function getTypeProperties(type: Type<Immutable>): PropertyCollection | undefined {
+function getPropertyDescriptors(type: Type<Immutable>): PropertyCollection | undefined {
     return (type as any)[PROPS_KEY];
 }
 
@@ -101,7 +101,7 @@ function createClass(name: string, props: PropertyCollection, values: any): any 
 
     (RecordType as any)[PROPS_KEY] = props;
     (RecordType as any).getPropertyDescriptors = function () {
-        return getTypeProperties(RecordType);
+        return getPropertyDescriptors(RecordType);
     };
     RecordType.prototype = _RecordType.prototype;
     RecordType.prototype.constructor = RecordType;
@@ -113,6 +113,7 @@ export interface Class<TOut = any, TIn = any> {
     [prop: string]: any;
     name: string;
     new (values?: TIn): TOut;
+    getPropertyDescriptors(): Readonly<PropertyCollection>;
 }
 
 export interface Immutable extends Map<string, any> {}
@@ -160,7 +161,7 @@ export function compose<
         // iterate over extending types
         ext.forEach((type: Type<Immutable>) => {
             if (!isPrimitiveType(type)) {
-                const props = getTypeProperties(type);
+                const props = getPropertyDescriptors(type);
 
                 // if it's an immutable, serialize the value and mix with others
                 if (props != null) {

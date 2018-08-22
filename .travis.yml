@@ -1,0 +1,10 @@
+language: node_js
+script:
+  - npm run coveralls
+node_js:
+  - "stable"
+  - "lts/*"
+cache: yarn
+branches:
+  only:
+    - master

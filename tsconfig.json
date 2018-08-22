@@ -23,6 +23,8 @@
       "esnext.array"
     ],                                        /* Specify library files to be included in the compilation. */
     "declaration": true,                      /* Generates corresponding '.d.ts' file. */
+    "sourceMap": true,
+    "inlineSourceMap": false,
     "outDir": "lib",                        /* Redirect output structure to the directory. */
 
     /* Strict Type-Checking Options */
