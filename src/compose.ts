@@ -3,14 +3,23 @@ import isArray from 'is-array';
 import isPlainObject from 'is-plain-obj';
 import reduce from 'reduce';
 
+/**
+ * @private
+ */
 const PROPS_KEY = '__@@DESCRIPTORS@@__';
 
+/**
+ * @private
+ */
 function isPrimitiveType(input: any): boolean {
     return input === String ||
         input === Boolean ||
         input === Number;
 }
 
+/**
+ * @private
+ */
 function createTypeInstance(type: Type<any>, value?: any): any {
     if (!isPrimitiveType(type)) {
         const PropertyType = type as Class<any>;
@@ -30,6 +39,9 @@ function createTypeInstance(type: Type<any>, value?: any): any {
     return propertyFactory();
 }
 
+/**
+ * @private
+ */
 function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
     if (desc == null) {
         return value;
@@ -65,6 +77,9 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
     return value || desc.defaultValue;
 }
 
+/**
+ * @private
+ */
 function createPropertyInstance(prop: Property<any>, value?: any): any {
     if (prop.items == null || value == null) {
         if (value == null) {
@@ -79,10 +94,16 @@ function createPropertyInstance(prop: Property<any>, value?: any): any {
     return createTypeInstance(prop.type, resolveGenericValue(prop.items, value));
 }
 
+/**
+ * @private
+ */
 function getPropertyDescriptors(type: Type<Immutable>): PropertyCollection<any> | undefined {
     return (type as any)[PROPS_KEY];
 }
 
+/**
+ * @private
+ */
 function createClass(name: string, props: PropertyCollection<any>, values: any): any {
     const _RecordType = Record(values, name);
 
@@ -113,7 +134,12 @@ function createClass(name: string, props: PropertyCollection<any>, values: any):
     return RecordType as any;
 }
 
-export interface Class<TOut = any, TIn = any> {
+/**
+ * Represents an Record class
+ * @param TOut - List of properties defined in Record instance
+ * @param TIn - List of properties defined as constructor arguments
+ */
+export interface Class<TOut, TIn = any> {
     [prop: string]: any;
     name: string;
     new (values?: TIn): TOut;
@@ -121,38 +147,69 @@ export interface Class<TOut = any, TIn = any> {
     createPropertyInstance<POut, PIn = POut>(prop: Property<POut>, value?: PIn): POut & Immutable;
 }
 
+/**
+ * Represents an immutable data structure
+ */
 export interface Immutable extends Map<string, any> {}
 
 export interface Values {
     [prop: string]: any;
 }
 
+/**
+ * Represents a type function
+ */
 export type TypeFunction<T> = (value?: any) => T;
 
+/**
+ * Represents a type
+ */
 export type Type<T> = Class<T> | TypeFunction<T>;
 
+/**
+ * Represents a type descriptor
+ * @param type - Type constructor that represents a field type
+ * @param defaultValue - Type default value
+ * @param items - Nested type descriptor used for mapping item values in lists and maps.
+ */
 export interface TypeDescriptor<T> {
     type: Type<T>;
     defaultValue?: any;
     items?: TypeDescriptor<T>;
 }
 
+/**
+ * Represents a property descriptor
+ * @package nullable - Informs to not create an instance of nested type with default valeus when value is not provided.
+ */
 export interface Property<T> extends TypeDescriptor<T> {
     nullable?: boolean;
 }
 
+/**
+ * Represents a collection of Record properties
+ * @param @key - Property descriptor
+ */
 export type PropertyCollection<T> = {
     readonly [P in keyof T]?: Property<any>;
 };
 
+/**
+ * Represents a list options to create a Record class
+ * @param name - Record name
+ * @param properties - List of properties
+ * @param extends - Record type(s) to extend. All properties from specifed records becomes part of the new one.
+ */
 export interface ComposeOptions<T> {
     name: string;
     properties?: PropertyCollection<T>;
     extends?: Type<any> | Type<any>[];
 }
 
-/* 
+/** 
  * Creates a deeply nested Record class.
+ * @param opts - List of options
+ * @returns Record class with defined properties
  */
 export function compose<
     TDef,
