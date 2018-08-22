@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { List } from 'immutable';
+import { List, Map } from 'immutable';
 import { Immutable, compose } from '../../src/index';
 
 describe('compose', () => {
@@ -567,6 +567,59 @@ describe('compose', () => {
             expect(g.users.get(0).toJS()).to.eql({
                 name: 'Mike Wazowski',
             });
+        });
+
+        it('should create deeple nested generic items', () => {
+            interface User {
+                name: string;
+            }
+
+            const UserRecord = compose<User>({
+                name: 'User',
+                properties: {
+                    name: { type: String },
+                },
+            });
+
+            interface GroupPojo {
+                users: {
+                    [key: string]: User[];
+                };
+            }
+
+            interface Group {
+                users: Map<string, List<User>>;
+            }
+
+            const GroupRecord = compose<Group, GroupPojo>({
+                name: 'Group',
+                properties: {
+                    users: {
+                        type: Map,
+                        generic: {
+                            type: List,
+                            generic: {
+                                type: UserRecord,
+                            },
+                        },
+                    },
+                },
+            });
+
+            const u = new GroupRecord({
+                users: {
+                    monsters: [
+                        { name: 'Mike Wazowski' },
+                        { name: 'James P. Sullivan' },
+                    ],
+                    humans: [
+                        { name: 'Boo' },
+                    ],
+                },
+            });
+
+            expect(u.users.get('monsters').get(0).name).to.eql('Mike Wazowski');
+            expect(u.users.get('humans').get(0).name).to.eql('Boo');
         });
     });
 });

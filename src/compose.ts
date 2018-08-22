@@ -30,7 +30,7 @@ function createTypeInstance(type: Type<any>, value?: any): any {
     return propertyFactory();
 }
 
-function resolveGenericValue(desc?: Descriptor<any>, value?: any): any {
+function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
     if (desc == null) {
         return value;
     }
@@ -100,6 +100,9 @@ function createClass(name: string, props: PropertyCollection, values: any): any 
     }
 
     (RecordType as any)[PROPS_KEY] = props;
+    (RecordType as any).getPropertyDescriptors = function () {
+        return getTypeProperties(RecordType);
+    };
     RecordType.prototype = _RecordType.prototype;
     RecordType.prototype.constructor = RecordType;
 
@@ -122,13 +125,13 @@ export type TypeFunction<T> = (value?: any) => T;
 
 export type Type<T> = Class<T> | TypeFunction<T>;
 
-export interface Descriptor<T> {
+export interface TypeDescriptor<T> {
     type: Type<T>;
     defaultValue?: any;
-    generic?: Descriptor<T>;
+    generic?: TypeDescriptor<T>;
 }
 
-export interface Property<T> extends Descriptor<T> {
+export interface Property<T> extends TypeDescriptor<T> {
     nullable?: boolean;
 }
 
@@ -186,7 +189,7 @@ export function compose<
 
     return createClass(
         opts.name,
-        propTypes,
+        Object.freeze(propTypes),
         propValues,
     );
 }

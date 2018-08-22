@@ -128,7 +128,7 @@ console.log(p.toJS());
 
 ## Generics
 
-That all works fine with Records and primitive types. But what if we need to have a List or a Map with nested Records? ``compose-record`` has a special option for it: ``generic``. 
+That all works fine with Record and primitive types. But what if we need to have a List or a Map with nested Records? ``compose-record`` has a special option for it: ``generic``. 
 ``generic`` is a nested type descriptor that informs ``compose-record`` how to wrap the underlying values.
 It's optional, by default ``compose-record`` will use a value as it is.
 
@@ -155,15 +155,82 @@ const Group = compose({
     }
 });
 
-const u = new User();
+const u = new Group({
+    users: [
+        { name: 'Mike Wazowski' },
+        { name: 'James P. Sullivan' }
+    ]
+});
+
+console.log(p.toJS());
+
+/*
+ *    {
+ *        users: [
+ *            { name: 'Mike Wazowski' },
+ *            { name: 'James P. Sullivan' }
+ *        ]
+ *     }
+ */
+
+````
+
+You can build even more complex scenarios:
+
+````javascript
+import { compose } from 'compose-record';
+import { List, Map } from 'immutable';
+
+const User = compose({
+    name: 'User',
+    properties: {
+        name: { type: String }
+    }
+});
+
+const Group = compose({
+    name: 'Group',
+    properties: {
+        users: { 
+            type: Map,
+            generic: {
+                type: List,
+                generic: {
+                    type: User
+                }
+            }
+        }
+    }
+});
+
+const u = new Group({
+    users: {
+        monsters: [
+            { name: 'Mike Wazowski' },
+            { name: 'James P. Sullivan' }
+        ],
+        humans: [
+            { name: 'Boo' }
+        ]
+    }
+});
 
 console.log(p.toJS());
 
 /*
  * {
- *     id: 0,
- *     name: ''
+ *     users: {
+ *         monsters: [
+ *             { name: 'Mike Wazowski' },
+ *             { name: 'James P. Sullivan' }
+ *         ],
+ *      humans: [
+ *          { name: 'Boo' }
+ *      ]
+ *   }
  * }
  */
 
 ````
+
+**Note:** There is one caveat: It works only for constructors. All further inserts require you to pass an instance of a nested Record. This is a limiation of ```compose-record``` which might be solved in the future.
