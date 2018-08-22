@@ -191,7 +191,7 @@ export interface Property<T> extends TypeDescriptor<T> {
  * @param @key - Property descriptor
  */
 export type PropertyCollection<T> = {
-    readonly [P in keyof Exclude<T, Immutable>]?: Property<any>;
+    readonly [P in keyof T]?: Property<any>;
 };
 
 /**
@@ -214,7 +214,7 @@ export interface ComposeOptions<T> {
 export function compose<
     TDef,
     TArgs = TDef
->(opts: ComposeOptions<TDef>): Class<TDef extends Immutable ? TDef : TDef & Immutable, TArgs> {
+>(opts: ComposeOptions<TDef>): Class<TDef & Immutable, TArgs> {
     let propTypes: PropertyCollection<any> = opts.properties ?  { ...(opts.properties as any) } : {};
 
     if (opts.extends) {
