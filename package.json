@@ -15,7 +15,6 @@
     "test": "rimraf coverage && cross-env NODE_ENV=test nyc mocha",
     "coveralls": "npm test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "doc": "rimraf docs && typedoc --excludeProtected --excludePrivate --out docs && touch docs/.nojekyll",
-    "gh-pages": "git subtree push --prefix docs origin gh-pages",
     "precommit": "npm test && npm run build && npm run doc && git add -A"
   },
   "peerDependencies": {
