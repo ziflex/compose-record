@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "repository": "https://github.com/ziflex/compose-record",
+  "homepage": "https://ziflex.github.io/compose-record",
   "author": "Tim Voronov <ziflex@gmail.com>",
   "license": "MIT",
   "private": false,
@@ -15,9 +16,8 @@
     "coveralls": "npm test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "doc": "rimraf docs && typedoc --excludeProtected --excludePrivate --out docs",
     "gh-pages": "git subtree push --prefix docs origin gh-pages",
-    "precommit": "npm test && npm run doc",
-    "prepush": "npm run build",
-    "postpush": "npm run gh-pages"
+    "precommit": "npm test",
+    "prepush": "npm run build && npm run doc && npm run gh-pages"
   },
   "peerDependencies": {
     "immutable": "^3.8.2"
