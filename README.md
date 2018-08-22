@@ -238,3 +238,47 @@ console.log(p.toJS());
 ````
 
 **Note:** There is one caveat: It works only for constructors. All further inserts require you to pass an instance of a nested Record. This is a limiation of ```compose-record``` which might be solved in the future.
+
+Current work around is to get a type descriptor and use ``Record.createPropertyInstance()`` method:
+
+```javascript
+import { compose } from 'compose-record';
+import { List, Map } from 'immutable';
+
+const User = compose({
+    name: 'User',
+    properties: {
+        name: {
+            type: String,
+        },
+    },
+});
+
+const Group = compose({
+    name: 'Group',
+    properties: {
+        users: {
+            type: List,
+            items: {
+                type: User,
+            },
+        },
+    },
+});
+
+const desc = Group.getPropertyDescriptors();
+const u = Group.createPropertyInstance<User>(desc.users.items, {
+    name: 'Mike Wazowski',
+});
+
+const g = new Group();
+console.log(g.users.push(u).toJS());
+
+/*
+ *    {
+ *        users: [
+ *            { name: 'Mike Wazowski' },
+ *        ]
+ *     }
+ */
+```

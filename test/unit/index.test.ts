@@ -622,4 +622,55 @@ describe('compose', () => {
             expect(u.users.get('humans').get(0).name).to.eql('Boo');
         });
     });
+
+    context('Static methods', () => {
+        it('should create generic item', () => {
+            interface User {
+                name: string;
+            }
+
+            interface GroupPojo {
+                users: User[];
+            }
+
+            interface Group {
+                users: List<User & Immutable>;
+            }
+
+            const UserRecord = compose<User>({
+                name: 'User',
+                properties: {
+                    name: {
+                        type: String,
+                    },
+                },
+            });
+
+            const GroupRecord = compose<Group, GroupPojo>({
+                name: 'Group',
+                properties: {
+                    users: {
+                        type: List,
+                        items: {
+                            type: UserRecord,
+                        },
+                    },
+                },
+            });
+
+            const g = new GroupRecord();
+            const desc = GroupRecord.getPropertyDescriptors();
+
+            if (desc.users.items) {
+                const u = GroupRecord.createPropertyInstance<User>(desc.users.items, {
+                    name: 'Mike Wazowski',
+                });
+
+                expect(g.users.size).to.equal(0);
+                expect(u.toJS()).to.eql({
+                    name: 'Mike Wazowski',
+                });
+            }
+        });
+    });
 });

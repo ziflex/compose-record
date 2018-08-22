@@ -79,11 +79,11 @@ function createPropertyInstance(prop: Property<any>, value?: any): any {
     return createTypeInstance(prop.type, resolveGenericValue(prop.items, value));
 }
 
-function getPropertyDescriptors(type: Type<Immutable>): PropertyCollection | undefined {
+function getPropertyDescriptors(type: Type<Immutable>): PropertyCollection<any> | undefined {
     return (type as any)[PROPS_KEY];
 }
 
-function createClass(name: string, props: PropertyCollection, values: any): any {
+function createClass(name: string, props: PropertyCollection<any>, values: any): any {
     const _RecordType = Record(values, name);
 
     // tslint:disable-next-line:typedef
@@ -103,6 +103,10 @@ function createClass(name: string, props: PropertyCollection, values: any): any 
     (RecordType as any).getPropertyDescriptors = function () {
         return getPropertyDescriptors(RecordType);
     };
+    // tslint:disable-next-line:max-line-length
+    (RecordType as any).createPropertyInstance = function <TRec, TArgs = TRec>(prop: Property<TRec>, value?: TArgs): TRec {
+        return createPropertyInstance(prop, value) as TRec;
+    };
     RecordType.prototype = _RecordType.prototype;
     RecordType.prototype.constructor = RecordType;
 
@@ -113,7 +117,8 @@ export interface Class<TOut = any, TIn = any> {
     [prop: string]: any;
     name: string;
     new (values?: TIn): TOut;
-    getPropertyDescriptors(): Readonly<PropertyCollection>;
+    getPropertyDescriptors(): Readonly<{ [P in keyof TIn]: Property<any> }>;
+    createPropertyInstance<POut, PIn = POut>(prop: Property<POut>, value?: PIn): POut & Immutable;
 }
 
 export interface Immutable extends Map<string, any> {}
@@ -136,13 +141,13 @@ export interface Property<T> extends TypeDescriptor<T> {
     nullable?: boolean;
 }
 
-export interface PropertyCollection {
-    [name: string]: Property<any>;
-}
+export type PropertyCollection<T> = {
+    readonly [P in keyof T]?: Property<any>;
+};
 
-export interface ComposeOptions {
+export interface ComposeOptions<T> {
     name: string;
-    properties?: PropertyCollection;
+    properties?: PropertyCollection<T>;
     extends?: Type<any> | Type<any>[];
 }
 
@@ -152,8 +157,8 @@ export interface ComposeOptions {
 export function compose<
     TDef,
     TArgs = TDef
->(opts: ComposeOptions): Class<TDef & Immutable, TArgs> {
-    let propTypes: PropertyCollection = opts.properties ?  { ...opts.properties } : {};
+>(opts: ComposeOptions<TDef>): Class<TDef & Immutable, TArgs> {
+    let propTypes: PropertyCollection<any> = opts.properties ?  { ...(opts.properties as any) } : {};
 
     if (opts.extends) {
         const ext: Type<any>[] = isArray(opts.extends) ? opts.extends : [opts.extends];
@@ -165,7 +170,7 @@ export function compose<
 
                 // if it's an immutable, serialize the value and mix with others
                 if (props != null) {
-                    propTypes = { ...propTypes, ...props };
+                    propTypes = { ...(propTypes as any), ...props };
                 } else {
                     // tslint:disable-next-line:max-line-length
                     console.warn('Passed a non-composed data structure as extending type. Only composed Records are supported.');
@@ -180,7 +185,7 @@ export function compose<
         const out = res;
 
         // set record prop type
-        propTypes[name] = prop;
+        (propTypes as any)[name] = prop;
 
         // set prop default value
         out[name] = createTypeInstance(prop.type, prop.defaultValue);
