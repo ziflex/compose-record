@@ -466,8 +466,8 @@ describe('compose', () => {
         });
     });
 
-    context('When "genericType" is defined', () => {
-        it('should initialize generic type instance', () => {
+    context('When "itemsType" is defined', () => {
+        it('should initialize items type instance', () => {
             interface User {
                 name: string;
             }
@@ -494,7 +494,7 @@ describe('compose', () => {
                 properties: {
                     users: {
                         type: List,
-                        generic: {
+                        items: {
                             type: UserRecord,
                         },
                     },
@@ -518,7 +518,7 @@ describe('compose', () => {
             });
         });
 
-        it('should initialize generic type instance with default values', () => {
+        it('should initialize items type instance with default values', () => {
             interface User {
                 name: string;
             }
@@ -545,7 +545,7 @@ describe('compose', () => {
                 properties: {
                     users: {
                         type: List,
-                        generic: {
+                        items: {
                             type: UserRecord,
                         },
                     },
@@ -569,7 +569,7 @@ describe('compose', () => {
             });
         });
 
-        it('should create deeple nested generic items', () => {
+        it('should create deeple nested items items', () => {
             interface User {
                 name: string;
             }
@@ -596,9 +596,9 @@ describe('compose', () => {
                 properties: {
                     users: {
                         type: Map,
-                        generic: {
+                        items: {
                             type: List,
-                            generic: {
+                            items: {
                                 type: UserRecord,
                             },
                         },

@@ -1,6 +1,10 @@
 # compose-record
 > Type-safe utility library for creating nested Immutable Records
 
+[![npm version](https://badge.fury.io/js/compose-record.svg)](https://www.npmjs.com/package/compose-record)
+[![Build Status](https://secure.travis-ci.org/ziflex/compose-record.svg?branch=master)](http://travis-ci.org/ziflex/compose-record)
+[![Coverage Status](https://coveralls.io/repos/github/ziflex/compose-record/badge.svg?branch=master)](https://coveralls.io/github/ziflex/compose-record)
+
 ## Motivation
 
 [Immutable.js](https://facebook.github.io/immutable-js/) is a great library. But, unfortunatelly, in v3 it does not well support nested Records, making its usability less pleasant.
@@ -126,10 +130,10 @@ console.log(p.toJS());
 
 ````
 
-## Generics
+## Item types
 
-That all works fine with Record and primitive types. But what if we need to have a List or a Map with nested Records? ``compose-record`` has a special option for it: ``generic``. 
-``generic`` is a nested type descriptor that informs ``compose-record`` how to wrap the underlying values.
+That all works fine with Record and primitive types. But what if we need to have a List or a Map with nested Records? ``compose-record`` has a special option for it: ``items``. 
+``items`` is a nested type descriptor that informs ``compose-record`` how to wrap the underlying values.
 It's optional, by default ``compose-record`` will use a value as it is.
 
 ````javascript
@@ -148,7 +152,7 @@ const Group = compose({
     properties: {
         users: { 
             type: List,
-            generic: {
+            items: {
                 type: User
             }
         }
@@ -193,9 +197,9 @@ const Group = compose({
     properties: {
         users: { 
             type: Map,
-            generic: {
+            items: {
                 type: List,
-                generic: {
+                items: {
                     type: User
                 }
             }

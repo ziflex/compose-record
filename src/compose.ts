@@ -37,11 +37,11 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
 
     if (isArray(value)) {
         return value.map((gValue: any) => {
-            if (desc.generic == null) {
+            if (desc.items == null) {
                 return createTypeInstance(desc.type, gValue);
             }
 
-            return createTypeInstance(desc.type, resolveGenericValue(desc.generic, gValue));
+            return createTypeInstance(desc.type, resolveGenericValue(desc.items, gValue));
         });
     }
 
@@ -50,10 +50,10 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
             const out = res;
             let resolved;
 
-            if (desc.generic == null) {
+            if (desc.items == null) {
                 resolved = createTypeInstance(desc.type, gValue);
             } else {
-                resolved = createTypeInstance(desc.type, resolveGenericValue(desc.generic, gValue));
+                resolved = createTypeInstance(desc.type, resolveGenericValue(desc.items, gValue));
             }
 
             out[gField] = resolved;
@@ -66,7 +66,7 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
 }
 
 function createPropertyInstance(prop: Property<any>, value?: any): any {
-    if (prop.generic == null || value == null) {
+    if (prop.items == null || value == null) {
         if (value == null) {
             if (prop.nullable) {
                 return null;
@@ -76,7 +76,7 @@ function createPropertyInstance(prop: Property<any>, value?: any): any {
         return createTypeInstance(prop.type, value || prop.defaultValue);
     }
 
-    return createTypeInstance(prop.type, resolveGenericValue(prop.generic, value));
+    return createTypeInstance(prop.type, resolveGenericValue(prop.items, value));
 }
 
 function getTypeProperties(type: Type<Immutable>): PropertyCollection | undefined {
@@ -128,7 +128,7 @@ export type Type<T> = Class<T> | TypeFunction<T>;
 export interface TypeDescriptor<T> {
     type: Type<T>;
     defaultValue?: any;
-    generic?: TypeDescriptor<T>;
+    items?: TypeDescriptor<T>;
 }
 
 export interface Property<T> extends TypeDescriptor<T> {
