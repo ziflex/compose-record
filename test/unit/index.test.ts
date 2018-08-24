@@ -245,6 +245,139 @@ describe('compose', () => {
             expect(u.setIn(['user', 'username'], 'jsullivan'), 'to be immutable').to.not.equal(u);
         });
 
+        it('should recieve immutable structures as values of the same type', () => {
+            interface UserPojo {
+                username: string;
+                role: 'user' | 'admin';
+            }
+
+            interface ProfilePojo {
+                id: number;
+                name: string;
+                user: UserPojo;
+            }
+
+            interface User extends UserPojo, Immutable {}
+
+            interface Profile extends Immutable {
+                id: number;
+                name: string;
+                user: User;
+            }
+
+            const UserRecord = compose<User, UserPojo>({
+                name: 'User',
+                properties: {
+                    username: {
+                        type: String,
+                    },
+                    role: {
+                        type: String,
+                    },
+                },
+            });
+
+            const ProfileRecord = compose<Profile, ProfilePojo>({
+                name: 'Profile',
+                properties: {
+                    id: {
+                        type: Number,
+                    },
+                    name: {
+                        type: String,
+                    },
+                    user: {
+                        type: UserRecord,
+                        defaultValue: {
+                            username: 'unknown',
+                            role: 'user',
+                        },
+                    },
+                },
+            });
+
+            const u = new UserRecord({
+                username: 'mwazowski',
+                role: 'admin',
+            });
+            const p = new ProfileRecord({
+                id: 1,
+                name: 'Mike Wazowski',
+                user: u,
+            });
+
+            expect(p.user).to.not.equal(u);
+            expect(p.user.constructor).to.equal(UserRecord);
+        });
+
+        it('should recieve immutable structures as values of the different type and unwrap them', () => {
+            interface UserPojo {
+                username: string;
+                role: 'user' | 'admin';
+            }
+
+            interface ProfilePojo {
+                id: number;
+                name: string;
+                user: UserPojo;
+            }
+
+            interface User extends UserPojo, Immutable {}
+
+            interface Profile extends Immutable {
+                id: number;
+                name: string;
+                user: User;
+            }
+
+            const UserRecord = compose<User, UserPojo>({
+                name: 'User',
+                properties: {
+                    username: {
+                        type: String,
+                    },
+                    role: {
+                        type: String,
+                    },
+                },
+            });
+
+            const ProfileRecord = compose<Profile, ProfilePojo>({
+                name: 'Profile',
+                properties: {
+                    id: {
+                        type: Number,
+                    },
+                    name: {
+                        type: String,
+                    },
+                    user: {
+                        type: UserRecord,
+                        defaultValue: {
+                            username: 'unknown',
+                            role: 'user',
+                        },
+                    },
+                },
+            });
+
+            const u = Map({
+                username: 'mwazowski',
+                role: 'admin',
+            }) as any;
+            const p = new ProfileRecord({
+                id: 1,
+                name: 'Mike Wazowski',
+                user: u,
+            });
+
+            expect(p.user).to.not.equal(u);
+            expect(p.user.toJS()).to.eql({
+                username: 'mwazowski',
+                role: 'admin',
+            });
+        });
+
         context('When property is nullable', () => {
             it('should ignore default values for', () => {
                 interface UserPojo {
@@ -466,7 +599,7 @@ describe('compose', () => {
         });
     });
 
-    context('When "itemsType" is defined', () => {
+    context('When "items" is defined', () => {
         it('should initialize items type instance', () => {
             interface User {
                 name: string;
@@ -620,6 +753,59 @@ describe('compose', () => {
 
             expect(u.users.get('monsters').get(0).name).to.eql('Mike Wazowski');
             expect(u.users.get('humans').get(0).name).to.eql('Boo');
+        });
+
+        it('should recieve immutable structures as values of the same type', () => {
+            interface User {
+                name: string;
+            }
+
+            interface GroupPojo {
+                users: User[];
+            }
+
+            interface Group {
+                users: List<User & Immutable>;
+            }
+
+            const UserRecord = compose<User>({
+                name: 'User',
+                properties: {
+                    name: {
+                        type: String,
+                    },
+                },
+            });
+
+            const GroupRecord = compose<Group, GroupPojo>({
+                name: 'Group',
+                properties: {
+                    users: {
+                        type: List,
+                        items: {
+                            type: UserRecord,
+                        },
+                    },
+                },
+            });
+
+            const l = List([
+                [
+                    {
+                        name: 'Mike Wazowski',
+                    },
+                    {
+                        name: 'James P. Sullivan',
+                    },
+                ],
+            ]) as any;
+
+            const g = new GroupRecord({
+                users: l,
+            });
+
+            expect(g.users).to.not.equal(l);
+            expect(g.users.get(0).constructor).to.equal(UserRecord);
         });
     });
 

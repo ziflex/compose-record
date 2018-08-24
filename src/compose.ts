@@ -2,6 +2,7 @@ import { Map, Record } from 'immutable';
 import isArray from 'is-array';
 import isPlainObject from 'is-plain-obj';
 import reduce from 'reduce';
+import { isImmutable } from './is-immutable';
 
 /**
  * @private
@@ -23,6 +24,11 @@ function isPrimitiveType(input: any): boolean {
 function createTypeInstance(type: Type<any>, value?: any): any {
     if (!isPrimitiveType(type)) {
         const PropertyType = type as Class<any>;
+
+        if (isImmutable(value)) {
+            // unwrap in order to keep data consistency in place
+            return new PropertyType((value as Immutable).toJS());
+        }
 
         return new PropertyType(value);
     }
@@ -72,6 +78,10 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
 
             return out;
         },            {});
+    }
+
+    if (isImmutable(value)) {
+        return resolveGenericValue(desc, (value as Immutable).toJS());
     }
 
     return value || desc.defaultValue;
@@ -214,7 +224,7 @@ export interface ComposeOptions<T> {
 export function compose<
     TDef,
     TArgs = TDef
->(opts: ComposeOptions<TDef>): Class<TDef & Immutable, TArgs> {
+>(opts: ComposeOptions<TDef>): Class<TDef extends Immutable ? TDef : TDef & Immutable, TArgs> {
     let propTypes: PropertyCollection<any> = opts.properties ?  { ...(opts.properties as any) } : {};
 
     if (opts.extends) {
