@@ -237,7 +237,7 @@ export function compose<
 
                 // if it's an immutable, serialize the value and mix with others
                 if (props != null) {
-                    propTypes = { ...(propTypes as any), ...props };
+                    propTypes = { ...props, ...(propTypes as any) };
                 } else {
                     // tslint:disable-next-line:max-line-length
                     console.warn('Passed a non-composed data structure as extending type. Only composed Records are supported.');

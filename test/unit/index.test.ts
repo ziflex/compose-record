@@ -597,6 +597,43 @@ describe('compose', () => {
                 name: '',
             });
         });
+
+        it('should override inheritted properties', () => {
+            interface Entity {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+            }
+
+            const EntityRecord = compose<Entity>({
+                name: 'Entity',
+                properties: {
+                    id: {
+                        type: Number,
+                    },
+                    createdAt: {
+                        type: Date,
+                    },
+                    updatedAt: {
+                        type: Date,
+                    },
+                },
+            });
+
+            interface User extends Entity {}
+
+            const UserRecord = compose<User>({
+                name: 'User',
+                extends: EntityRecord,
+                properties: {
+                    id: { type: String },
+                },
+            });
+
+            const u = new UserRecord();
+
+            expect(u.toJS().id).to.eql('');
+        });
     });
 
     context('When "items" is defined', () => {
