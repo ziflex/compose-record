@@ -29,7 +29,7 @@ function isFactory(type: any): boolean {
  * @param input - A factory function.
  * @param - A factory function type.
  */
-export function factory<TOut, TIn = any>(input: (value?: TIn) => TOut): TypeFactoryFunction<TOut> {
+function factory<TOut, TIn = any>(input: (value?: TIn) => TOut): TypeFactoryFunction<TOut> {
     const factory = input as TypeFactoryFunction<TOut>;
     factory[IS_FACTORY_KEY] = true;
 
@@ -297,3 +297,5 @@ export function compose<
         propValues,
     );
 }
+
+compose.factory = factory;

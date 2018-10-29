@@ -290,7 +290,7 @@ Since version 1.3, it is possible to create a factory function type that is exec
 Here is an example:
 
   ```typescript
-    import { Immutable, compose, factory } from 'compose-record';
+    import { Immutable, compose } from 'compose-record';
 
     enum Role {
         User,
@@ -310,7 +310,7 @@ Here is an example:
                 type: String,
             },
             role: {
-                type: factory<Role, string>((value?: string) => {
+                type: compose.factory<Role, string>((value?: string) => {
                     let result = Role.User;
 
                     switch (value) {

@@ -321,7 +321,7 @@
 				<h2 id="enum-and-custom-types">Enum and custom types</h2>
 				<p>Since version 1.3, it is possible to create a factory function type that is executed as a regular function in order to get a custom value (usually mixed).</p>
 				<p>Here is an example:</p>
-				<pre><code class="language-typescript">    <span class="hljs-keyword">import</span> { Immutable, compose, factory } <span class="hljs-keyword">from</span> <span class="hljs-string">'compose-record'</span>;
+				<pre><code class="language-typescript">    <span class="hljs-keyword">import</span> { Immutable, compose } <span class="hljs-keyword">from</span> <span class="hljs-string">'compose-record'</span>;
 
     <span class="hljs-keyword">enum</span> Role {
         User,
@@ -341,7 +341,7 @@
                 <span class="hljs-keyword">type</span>: <span class="hljs-built_in">String</span>,
             },
             role: {
-                <span class="hljs-keyword">type</span>: factory&lt;Role, <span class="hljs-built_in">string</span>&gt;<span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">value?: <span class="hljs-built_in">string</span></span>) =&gt; {
+                <span class="hljs-keyword">type</span>: compose.factory&lt;Role, <span class="hljs-built_in">string</span>&gt;<span class="hljs-function">(<span class="hljs-params">(<span class="hljs-params">value?: <span class="hljs-built_in">string</span></span>) =&gt; {
                     <span class="hljs-keyword">let</span> result = Role.User;
 
                     <span class="hljs-keyword">switch</span> (<span class="hljs-params">value</span>) {

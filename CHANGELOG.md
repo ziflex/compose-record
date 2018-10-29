@@ -22,7 +22,7 @@
                 type: String,
             },
             role: {
-                type: factory<Role, string>((value?: string) => {
+                type: compose.factory<Role, string>((value?: string) => {
                     let result = Role.User;
 
                     switch (value) {

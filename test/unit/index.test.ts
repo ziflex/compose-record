@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { List, Map } from 'immutable';
-import { Immutable, compose, factory } from '../../src/index';
+import { Immutable, compose } from '../../src/index';
 
 describe('compose', () => {
     context('Flat structure', () => {
@@ -917,7 +917,7 @@ describe('compose', () => {
                         type: String,
                     },
                     role: {
-                        type: factory<Role, string>((value?: string) => {
+                        type: compose.factory<Role, string>((value?: string) => {
                             let result = Role.User;
 
                             switch (value) {
