@@ -84,7 +84,7 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
         return resolveGenericValue(desc, (value as Immutable).toJS());
     }
 
-    return value || desc.defaultValue;
+    return value != null ? value : desc.defaultValue;
 }
 
 /**
@@ -98,7 +98,7 @@ function createPropertyInstance(prop: Property<any>, value?: any): any {
             }
         }
 
-        return createTypeInstance(prop.type, value || prop.defaultValue);
+        return createTypeInstance(prop.type, value != null ? value : prop.defaultValue);
     }
 
     return createTypeInstance(prop.type, resolveGenericValue(prop.items, value));
