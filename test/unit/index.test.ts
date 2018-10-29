@@ -117,6 +117,44 @@ describe('compose', () => {
             });
             expect(u.set('username', 'jsullivan'), 'to be immutable').to.not.equal(u);
         });
+
+        it('should not use defaultValue for valid, falsey inputs', () => {
+            interface User {
+                username: string;
+                authenticated: boolean;
+                age: number;
+            }
+
+            const UserRecord = compose<User>({
+                name: 'User',
+                properties: {
+                    username: {
+                        type: String,
+                    },
+                    authenticated: {
+                        type: Boolean,
+                        defaultValue: true,
+                    },
+                    age: {
+                        type: Number,
+                        defaultValue: 10,
+                    },
+                },
+            });
+
+            const values = {
+                username: 'mwazowski',
+                authenticated: false,
+                age: 0,
+            };
+            const u = new UserRecord(values as any);
+
+            expect(u.toJS(), 'to keep passed values').to.eql({
+                username: 'mwazowski',
+                authenticated: false,
+                age: 0,
+            });
+        });
     });
 
     context('Nested structure', () => {
