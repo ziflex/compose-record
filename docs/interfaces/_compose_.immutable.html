@@ -139,7 +139,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.asImmutable</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:726</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:726</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,7 +164,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.asMutable</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:719</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:719</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -195,7 +195,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.clear</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:487</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:487</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -218,7 +218,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.delete</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:481</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:481</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -255,7 +255,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.deleteIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:588</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:588</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -281,7 +281,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.deleteIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:589</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:589</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -306,7 +306,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.merge</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:518</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:518</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -320,10 +320,10 @@
 									via <code>Immutable.fromJS</code> before being merged. However, if the value is an
 									Iterable but includes non-iterable JS objects or arrays, those nested
 								values will be preserved.</p>
-								<pre><code><span class="hljs-string">var</span> <span class="hljs-string">x</span> <span class="hljs-string">=</span> <span class="hljs-string">Immutable.Map({a:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">b:</span> <span class="hljs-number">20</span><span class="hljs-string">,</span> <span class="hljs-attr">c:</span> <span class="hljs-number">30</span><span class="hljs-string">});</span>
-<span class="hljs-string">var</span> <span class="hljs-string">y</span> <span class="hljs-string">=</span> <span class="hljs-string">Immutable.Map({b:</span> <span class="hljs-number">40</span><span class="hljs-string">,</span> <span class="hljs-attr">a:</span> <span class="hljs-number">50</span><span class="hljs-string">,</span> <span class="hljs-attr">d:</span> <span class="hljs-number">60</span><span class="hljs-string">});</span>
-<span class="hljs-string">x.merge(y)</span> <span class="hljs-string">//</span> <span class="hljs-string">{</span> <span class="hljs-attr">a:</span> <span class="hljs-number">50</span><span class="hljs-string">,</span> <span class="hljs-attr">b:</span> <span class="hljs-number">40</span><span class="hljs-string">,</span> <span class="hljs-attr">c:</span> <span class="hljs-number">30</span><span class="hljs-string">,</span> <span class="hljs-attr">d:</span> <span class="hljs-number">60</span> <span class="hljs-string">}</span>
-<span class="hljs-string">y.merge(x)</span> <span class="hljs-string">//</span> <span class="hljs-string">{</span> <span class="hljs-attr">b:</span> <span class="hljs-number">20</span><span class="hljs-string">,</span> <span class="hljs-attr">a:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">d:</span> <span class="hljs-number">60</span><span class="hljs-string">,</span> <span class="hljs-attr">c:</span> <span class="hljs-number">30</span> <span class="hljs-string">}</span></code></pre>
+								<pre><code><span class="hljs-keywords">var</span> <span class="hljs-symbol">x</span> = Immutable.Map({a: <span class="hljs-number">10</span>, b: <span class="hljs-number">20</span>, c: <span class="hljs-number">30</span>});
+<span class="hljs-keywords">var</span> <span class="hljs-symbol">y</span> = Immutable.Map({b: <span class="hljs-number">40</span>, a: <span class="hljs-number">50</span>, d: <span class="hljs-number">60</span>});
+<span class="hljs-symbol">x</span>.merge(<span class="hljs-symbol">y</span>) <span class="hljs-comment">// { a: 50, b: 40, c: 30, d: 60 }</span>
+<span class="hljs-symbol">y</span>.merge(<span class="hljs-symbol">x</span>) <span class="hljs-comment">// { b: 20, a: 10, d: 60, c: 30 }</span></code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -337,7 +337,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.merge</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:519</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:519</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -362,7 +362,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeDeep</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:550</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:550</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -370,9 +370,9 @@
 									<p>Like <code>merge()</code>, but when two Iterables conflict, it merges them as well,
 									recursing deeply through the nested data.</p>
 								</div>
-								<pre><code><span class="hljs-string">var</span> <span class="hljs-string">x</span> <span class="hljs-string">=</span> <span class="hljs-string">Immutable.fromJS({a:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">y:</span> <span class="hljs-number">10</span> <span class="hljs-string">},</span> <span class="hljs-attr">b:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">20</span><span class="hljs-string">,</span> <span class="hljs-attr">y:</span> <span class="hljs-number">50</span> <span class="hljs-string">}</span> <span class="hljs-string">});</span>
-<span class="hljs-string">var</span> <span class="hljs-string">y</span> <span class="hljs-string">=</span> <span class="hljs-string">Immutable.fromJS({a:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">2</span> <span class="hljs-string">},</span> <span class="hljs-attr">b:</span> <span class="hljs-string">{</span> <span class="hljs-attr">y:</span> <span class="hljs-number">5</span> <span class="hljs-string">},</span> <span class="hljs-attr">c:</span> <span class="hljs-string">{</span> <span class="hljs-attr">z:</span> <span class="hljs-number">3</span> <span class="hljs-string">}</span> <span class="hljs-string">});</span>
-<span class="hljs-string">x.mergeDeep(y)</span> <span class="hljs-string">//</span> <span class="hljs-string">{a:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">2</span><span class="hljs-string">,</span> <span class="hljs-attr">y:</span> <span class="hljs-number">10</span> <span class="hljs-string">},</span> <span class="hljs-attr">b:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">20</span><span class="hljs-string">,</span> <span class="hljs-attr">y:</span> <span class="hljs-number">5</span> <span class="hljs-string">},</span> <span class="hljs-attr">c:</span> <span class="hljs-string">{</span> <span class="hljs-attr">z:</span> <span class="hljs-number">3</span> <span class="hljs-string">}</span> <span class="hljs-string">}</span></code></pre>
+								<pre><code>var x = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Immutable</span>.</span></span>from<span class="hljs-constructor">JS({<span class="hljs-params">a</span>: { <span class="hljs-params">x</span>: 10, <span class="hljs-params">y</span>: 10 }, <span class="hljs-params">b</span>: { <span class="hljs-params">x</span>: 20, <span class="hljs-params">y</span>: 50 } })</span>;
+var y = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Immutable</span>.</span></span>from<span class="hljs-constructor">JS({<span class="hljs-params">a</span>: { <span class="hljs-params">x</span>: 2 }, <span class="hljs-params">b</span>: { <span class="hljs-params">y</span>: 5 }, <span class="hljs-params">c</span>: { <span class="hljs-params">z</span>: 3 } })</span>;
+x.merge<span class="hljs-constructor">Deep(<span class="hljs-params">y</span>)</span> <span class="hljs-comment">// {a: { x: 2, y: 10 }, b: { x: 20, y: 5 }, c: { z: 3 } }</span></code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -386,7 +386,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeDeep</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:551</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:551</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -412,7 +412,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeDeepIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:664</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:664</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,8 +421,8 @@
 										performing the deep merge at a point arrived at by following the keyPath.
 									In other words, these two lines are equivalent:</p>
 								</div>
-								<pre><code><span class="hljs-selector-tag">x</span><span class="hljs-selector-class">.updateIn</span>([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>], abc =&gt; abc.mergeDeep(y));
-<span class="hljs-selector-tag">x</span><span class="hljs-selector-class">.mergeDeepIn</span>([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>], y);</code></pre>
+								<pre><code>x.update<span class="hljs-constructor">In(['<span class="hljs-params">a</span>', '<span class="hljs-params">b</span>', '<span class="hljs-params">c</span>'], <span class="hljs-params">abc</span> =&gt; <span class="hljs-params">abc</span>.<span class="hljs-params">mergeDeep</span>(<span class="hljs-params">y</span>)</span>);
+x.merge<span class="hljs-constructor">DeepIn(['<span class="hljs-params">a</span>', '<span class="hljs-params">b</span>', '<span class="hljs-params">c</span>'], <span class="hljs-params">y</span>)</span>;</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -439,7 +439,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeDeepIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:668</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:668</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -457,7 +457,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeDeepIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:672</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:672</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -485,7 +485,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeDeepWith</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:563</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:563</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -493,10 +493,10 @@
 									<p>Like <code>mergeDeep()</code>, but when two non-Iterables conflict, it uses the
 									<code>merger</code> function to determine the resulting value.</p>
 								</div>
-								<pre><code><span class="hljs-string">var</span> <span class="hljs-string">x</span> <span class="hljs-string">=</span> <span class="hljs-string">Immutable.fromJS({a:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">y:</span> <span class="hljs-number">10</span> <span class="hljs-string">},</span> <span class="hljs-attr">b:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">20</span><span class="hljs-string">,</span> <span class="hljs-attr">y:</span> <span class="hljs-number">50</span> <span class="hljs-string">}</span> <span class="hljs-string">});</span>
-<span class="hljs-string">var</span> <span class="hljs-string">y</span> <span class="hljs-string">=</span> <span class="hljs-string">Immutable.fromJS({a:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">2</span> <span class="hljs-string">},</span> <span class="hljs-attr">b:</span> <span class="hljs-string">{</span> <span class="hljs-attr">y:</span> <span class="hljs-number">5</span> <span class="hljs-string">},</span> <span class="hljs-attr">c:</span> <span class="hljs-string">{</span> <span class="hljs-attr">z:</span> <span class="hljs-number">3</span> <span class="hljs-string">}</span> <span class="hljs-string">});</span>
-<span class="hljs-string">x.mergeDeepWith((prev,</span> <span class="hljs-string">next)</span> <span class="hljs-string">=&gt;</span> <span class="hljs-string">prev</span> <span class="hljs-string">/</span> <span class="hljs-string">next,</span> <span class="hljs-string">y)</span>
-<span class="hljs-string">//</span> <span class="hljs-string">{a:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">5</span><span class="hljs-string">,</span> <span class="hljs-attr">y:</span> <span class="hljs-number">10</span> <span class="hljs-string">},</span> <span class="hljs-attr">b:</span> <span class="hljs-string">{</span> <span class="hljs-attr">x:</span> <span class="hljs-number">20</span><span class="hljs-string">,</span> <span class="hljs-attr">y:</span> <span class="hljs-number">10</span> <span class="hljs-string">},</span> <span class="hljs-attr">c:</span> <span class="hljs-string">{</span> <span class="hljs-attr">z:</span> <span class="hljs-number">3</span> <span class="hljs-string">}</span> <span class="hljs-string">}</span></code></pre>
+								<pre><code>var x = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Immutable</span>.</span></span>from<span class="hljs-constructor">JS({<span class="hljs-params">a</span>: { <span class="hljs-params">x</span>: 10, <span class="hljs-params">y</span>: 10 }, <span class="hljs-params">b</span>: { <span class="hljs-params">x</span>: 20, <span class="hljs-params">y</span>: 50 } })</span>;
+var y = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Immutable</span>.</span></span>from<span class="hljs-constructor">JS({<span class="hljs-params">a</span>: { <span class="hljs-params">x</span>: 2 }, <span class="hljs-params">b</span>: { <span class="hljs-params">y</span>: 5 }, <span class="hljs-params">c</span>: { <span class="hljs-params">z</span>: 3 } })</span>;
+x.merge<span class="hljs-constructor">DeepWith((<span class="hljs-params">prev</span>, <span class="hljs-params">next</span>)</span> =&gt; prev<span class="hljs-operator"> / </span>next, y)
+<span class="hljs-comment">// {a: { x: 5, y: 10 }, b: { x: 20, y: 10 }, c: { z: 3 } }</span></code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -537,7 +537,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeDeepWith</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:567</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:567</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -590,7 +590,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:642</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:642</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -599,8 +599,8 @@
 										performing the merge at a point arrived at by following the keyPath.
 									In other words, these two lines are equivalent:</p>
 								</div>
-								<pre><code><span class="hljs-selector-tag">x</span><span class="hljs-selector-class">.updateIn</span>([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>], abc =&gt; abc.merge(y));
-<span class="hljs-selector-tag">x</span><span class="hljs-selector-class">.mergeIn</span>([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>], y);</code></pre>
+								<pre><code>x.update<span class="hljs-constructor">In(['<span class="hljs-params">a</span>', '<span class="hljs-params">b</span>', '<span class="hljs-params">c</span>'], <span class="hljs-params">abc</span> =&gt; <span class="hljs-params">abc</span>.<span class="hljs-params">merge</span>(<span class="hljs-params">y</span>)</span>);
+x.merge<span class="hljs-constructor">In(['<span class="hljs-params">a</span>', '<span class="hljs-params">b</span>', '<span class="hljs-params">c</span>'], <span class="hljs-params">y</span>)</span>;</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -617,7 +617,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:646</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:646</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -635,7 +635,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:650</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:650</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -663,7 +663,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeWith</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:532</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:532</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -672,10 +672,10 @@
 										the provided Iterables (or JS objects) into this Map, but uses the
 									<code>merger</code> function for dealing with conflicts.</p>
 								</div>
-								<pre><code>var x = Immutable.Map({<span class="hljs-string">a:</span> <span class="hljs-number">10</span>, <span class="hljs-string">b:</span> <span class="hljs-number">20</span>, <span class="hljs-string">c:</span> <span class="hljs-number">30</span>});
-var y = Immutable.Map({<span class="hljs-string">b:</span> <span class="hljs-number">40</span>, <span class="hljs-string">a:</span> <span class="hljs-number">50</span>, <span class="hljs-string">d:</span> <span class="hljs-number">60</span>});
-x.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, y) /</span>/ { <span class="hljs-string">a:</span> <span class="hljs-number">0.2</span>, <span class="hljs-string">b:</span> <span class="hljs-number">0.5</span>, <span class="hljs-string">c:</span> <span class="hljs-number">30</span>, <span class="hljs-string">d:</span> <span class="hljs-number">60</span> }
-y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span>/ { <span class="hljs-string">b:</span> <span class="hljs-number">2</span>, <span class="hljs-string">a:</span> <span class="hljs-number">5</span>, <span class="hljs-string">d:</span> <span class="hljs-number">60</span>, <span class="hljs-string">c:</span> <span class="hljs-number">30</span> }</code></pre>
+								<pre><code>var x = Immutable.<span class="hljs-constructor">Map({<span class="hljs-params">a</span>: 10, <span class="hljs-params">b</span>: 20, <span class="hljs-params">c</span>: 30})</span>;
+var y = Immutable.<span class="hljs-constructor">Map({<span class="hljs-params">b</span>: 40, <span class="hljs-params">a</span>: 50, <span class="hljs-params">d</span>: 60})</span>;
+x.merge<span class="hljs-constructor">With((<span class="hljs-params">prev</span>, <span class="hljs-params">next</span>)</span> =&gt; prev<span class="hljs-operator"> / </span>next, y) <span class="hljs-comment">// { a: 0.2, b: 0.5, c: 30, d: 60 }</span>
+y.merge<span class="hljs-constructor">With((<span class="hljs-params">prev</span>, <span class="hljs-params">next</span>)</span> =&gt; prev<span class="hljs-operator"> / </span>next, x) <span class="hljs-comment">// { b: 2, a: 5, d: 60, c: 30 }</span></code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -716,7 +716,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.mergeWith</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:536</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:536</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -767,7 +767,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.remove</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:482</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:482</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -792,7 +792,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.removeIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:590</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:590</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -807,7 +807,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.removeIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:591</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:591</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -831,7 +831,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.set</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:472</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:472</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -865,7 +865,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.setIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:579</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:579</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -889,7 +889,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.setIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:580</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:580</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -918,7 +918,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.update</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:497</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:497</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -960,7 +960,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.update</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:498</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:498</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -996,7 +996,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.update</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:499</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:499</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1047,7 +1047,7 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 							<aside class="tsd-sources">
 								<p>Inherited from Map.updateIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:614</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:614</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1059,13 +1059,13 @@ y.mergeWith((prev, next) =&gt; prev <span class="hljs-regexp">/ next, x) /</span
 									be created at those keys. If the <code>keyPath</code> does not already contain a
 									value, the <code>updater</code> function will be called with <code>notSetValue</code>, if
 								provided, otherwise <code>undefined</code>.</p>
-								<pre><code><span class="hljs-keyword">var</span> <span class="hljs-keyword">data</span> = Immutable.fromJS({ a: { b: { c: <span class="hljs-number">10</span> } } });
-<span class="hljs-keyword">data</span> = <span class="hljs-keyword">data</span>.updateIn([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>], <span class="hljs-keyword">val</span> =&gt; <span class="hljs-keyword">val</span> * <span class="hljs-number">2</span>);
+								<pre><code>var data = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Immutable</span>.</span></span>from<span class="hljs-constructor">JS({ <span class="hljs-params">a</span>: { <span class="hljs-params">b</span>: { <span class="hljs-params">c</span>: 10 } } })</span>;
+data = data.update<span class="hljs-constructor">In(['<span class="hljs-params">a</span>', '<span class="hljs-params">b</span>', '<span class="hljs-params">c</span>'], <span class="hljs-params">val</span> =&gt; <span class="hljs-params">val</span> <span class="hljs-operator">*</span> 2)</span>;
 <span class="hljs-comment">// { a: { b: { c: 20 } } }</span></code></pre><p>If the <code>updater</code> function returns the same value it was called with, then
 								no change will occur. This is still true if <code>notSetValue</code> is provided.</p>
-								<pre><code>var <span class="hljs-keyword">data</span>1 = Immutable.fromJS({ a: { b: { c: <span class="hljs-number">10</span> } } });
-<span class="hljs-keyword">data</span>2 = <span class="hljs-keyword">data</span>1.updateIn([<span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span>], <span class="hljs-number">100</span>, val =&gt; val);
-assert(<span class="hljs-keyword">data</span>2 === <span class="hljs-keyword">data</span>1);</code></pre>
+								<pre><code>var data1 = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Immutable</span>.</span></span>from<span class="hljs-constructor">JS({ <span class="hljs-params">a</span>: { <span class="hljs-params">b</span>: { <span class="hljs-params">c</span>: 10 } } })</span>;
+data2 = data1.update<span class="hljs-constructor">In(['<span class="hljs-params">x</span>', '<span class="hljs-params">y</span>', '<span class="hljs-params">z</span>'], 100, <span class="hljs-params">val</span> =&gt; <span class="hljs-params">val</span>)</span>;
+<span class="hljs-keyword">assert</span>(data2<span class="hljs-operator"> === </span>data1);</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1100,7 +1100,7 @@ assert(<span class="hljs-keyword">data</span>2 === <span class="hljs-keyword">da
 							<aside class="tsd-sources">
 								<p>Inherited from Map.updateIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:618</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:618</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1139,7 +1139,7 @@ assert(<span class="hljs-keyword">data</span>2 === <span class="hljs-keyword">da
 							<aside class="tsd-sources">
 								<p>Inherited from Map.updateIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:623</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:623</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1175,7 +1175,7 @@ assert(<span class="hljs-keyword">data</span>2 === <span class="hljs-keyword">da
 							<aside class="tsd-sources">
 								<p>Inherited from Map.updateIn</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:627</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:627</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1223,7 +1223,7 @@ assert(<span class="hljs-keyword">data</span>2 === <span class="hljs-keyword">da
 							<aside class="tsd-sources">
 								<p>Inherited from Map.withMutations</p>
 								<ul>
-									<li>Defined in /Users/timofei.voronov/Work/src/github.com/ziflex/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:704</li>
+									<li>Defined in /home/davad/Sync/Avanade/MetLife/compose-record/node_modules/immutable/dist/immutable-nonambient.d.ts:704</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
