@@ -44,6 +44,14 @@
     });
   ```
 
+
+
+
+
+
+### Fixed
+* If a property is boolean and its value is ``false`` default values is used instead.
+
 ## 1.2.0
 
 ### Added
