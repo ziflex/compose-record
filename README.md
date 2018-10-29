@@ -282,3 +282,52 @@ console.log(g.users.push(u).toJS());
  *     }
  */
 ```
+
+## Enum and custom types
+
+Since version 1.3, it is possible to create a factory function type that is executed as a regular function in order to get a custom value (usually mixed).
+
+Here is an example:
+
+  ```typescript
+    import { Immutable, compose } from 'compose-record';
+
+    enum Role {
+        User,
+        Admin,
+        Owner,
+    }
+
+    interface User extends Immutable {
+        username: string;
+        role: Role;
+    }
+
+    const UserRecord = compose<User>({
+        name: 'User',
+        properties: {
+            username: {
+                type: String,
+            },
+            role: {
+                type: compose.factory<Role, string>((value?: string) => {
+                    let result = Role.User;
+
+                    switch (value) {
+                    case 'user':
+                        result = Role.User;
+                        break;
+                    case 'admin':
+                        result = Role.Admin;
+                        break;
+                    case 'owner':
+                        result = Role.Owner;
+                        break;
+                    }
+
+                    return result;
+                }),
+            },
+        },
+    });
+```

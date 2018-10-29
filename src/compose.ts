@@ -9,6 +9,8 @@ import { isImmutable } from './is-immutable';
  */
 const PROPS_KEY = '__@@DESCRIPTORS@@__';
 
+const IS_FACTORY_KEY = '__@@FACTORY@@__';
+
 /**
  * @private
  */
@@ -18,19 +20,43 @@ function isPrimitiveType(input: any): boolean {
         input === Number;
 }
 
+function isFactory(type: any): boolean {
+    return type[IS_FACTORY_KEY] != null;
+}
+
+/**
+ * Creates a factory function type.
+ * @param input - A factory function.
+ * @param - A factory function type.
+ */
+function factory<TOut, TIn = any>(input: (value?: TIn) => TOut): TypeFactoryFunction<TOut> {
+    const factory = input as TypeFactoryFunction<TOut>;
+    factory[IS_FACTORY_KEY] = true;
+
+    return factory;
+}
+
 /**
  * @private
  */
 function createTypeInstance(type: Type<any>, value?: any): any {
     if (!isPrimitiveType(type)) {
-        const PropertyType = type as Class<any>;
+        let rawValue = value;
 
         if (isImmutable(value)) {
             // unwrap in order to keep data consistency in place
-            return new PropertyType((value as Immutable).toJS());
+            rawValue = (value as Immutable).toJS();
         }
 
-        return new PropertyType(value);
+        if (isFactory(type) === false) {
+            const PropertyType = type as Class<any>;
+
+            return new PropertyType(rawValue);
+        }
+
+        const propertyFactory = type as TypeFactoryFunction<any>;
+
+        return propertyFactory(rawValue);
     }
 
     const propertyFactory = type as TypeFunction<any>;
@@ -171,10 +197,15 @@ export interface Values {
  */
 export type TypeFunction<T> = (value?: any) => T;
 
+export interface TypeFactoryFunction<T> {
+    [IS_FACTORY_KEY]: boolean;
+    (value?: any): T;
+}
+
 /**
  * Represents a type
  */
-export type Type<T> = Class<T> | TypeFunction<T>;
+export type Type<T> = Class<T> | TypeFunction<T> | TypeFactoryFunction<T>;
 
 /**
  * Represents a type descriptor
@@ -266,3 +297,5 @@ export function compose<
         propValues,
     );
 }
+
+compose.factory = factory;

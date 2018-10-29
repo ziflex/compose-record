@@ -934,4 +934,53 @@ describe('compose', () => {
             }
         });
     });
+
+    context('Factory types', () => {
+        it('should use a factory function as a type', () => {
+            enum Role {
+                User,
+                Admin,
+                Owner,
+            }
+
+            interface User {
+                username: string;
+                role: Role;
+            }
+
+            const UserRecord = compose<User>({
+                name: 'User',
+                properties: {
+                    username: {
+                        type: String,
+                    },
+                    role: {
+                        type: compose.factory<Role, string>((value?: string) => {
+                            let result = Role.User;
+
+                            switch (value) {
+                            case 'user':
+                                result = Role.User;
+                                break;
+                            case 'admin':
+                                result = Role.Admin;
+                                break;
+                            case 'owner':
+                                result = Role.Owner;
+                                break;
+                            }
+
+                            return result;
+                        }),
+                    },
+                },
+            });
+
+            const u = new UserRecord({
+                role: 'owner',
+            } as any);
+
+            expect(u.role).to.eq(Role.Owner);
+        });
+    });
 });
