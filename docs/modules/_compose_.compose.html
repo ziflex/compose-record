@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Values | compose-record</title>
+	<title>compose | compose-record</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,30 +56,84 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_compose_.html">&quot;compose&quot;</a>
+					<a href="_compose_.html">&quot;compose&quot;</a>
 				</li>
 				<li>
-					<a href="_compose_.values.html">Values</a>
+					<a href="_compose_.compose.html">compose</a>
 				</li>
 			</ul>
-			<h1>Interface Values</h1>
+			<h1>Module compose</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">Values</span>
+			<section class="tsd-panel">
+				<h3 class="tsd-before-signature">Callable</h3>
+				<ul class="tsd-signatures tsd-kind-module tsd-parent-kind-external-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">compose&lt;TDef, TArgs&gt;<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><a href="../interfaces/_compose_.composeoptions.html" class="tsd-signature-type">ComposeOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDef</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_compose_.class.html" class="tsd-signature-type">Class</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDef extends Immutable ? TDef : TDef &amp; Immutable</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ziflex/compose-record/blob/07b4bb7/src/compose.ts#L261">compose.ts:261</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Creates a deeply nested Record class.</p>
+							</div>
+						</div>
+						<h4 class="tsd-type-parameters-title">Type parameters</h4>
+						<ul class="tsd-type-parameters">
+							<li>
+								<h4>TDef</h4>
+							</li>
+							<li>
+								<h4>TArgs</h4>
+							</li>
+						</ul>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>opts: <a href="../interfaces/_compose_.composeoptions.html" class="tsd-signature-type">ComposeOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDef</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>List of options</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/_compose_.class.html" class="tsd-signature-type">Class</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDef extends Immutable ? TDef : TDef &amp; Immutable</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>Record class with defined properties</p>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-external-module">
-				<h3 class="tsd-before-signature">Indexable</h3>
-				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>prop: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></div>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="_compose_.compose.html#factory" class="tsd-kind-icon">factory</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="factory" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> factory</h3>
+					<div class="tsd-signature tsd-kind-icon">factory<span class="tsd-signature-symbol">:</span> <a href="_compose_.html#createfactory" class="tsd-signature-type">createFactory</a><span class="tsd-signature-symbol"> =&nbsp;createFactory</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ziflex/compose-record/blob/07b4bb7/src/compose.ts#L308">compose.ts:308</a></li>
+						</ul>
+					</aside>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -88,82 +142,12 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_compose_.html">"compose"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_is_immutable_.html">"is-<wbr>immutable"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_compose_.class.html" class="tsd-kind-icon">Class</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_compose_.composeoptions.html" class="tsd-kind-icon">Compose<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_compose_.immutable.html" class="tsd-kind-icon">Immutable</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_compose_.property.html" class="tsd-kind-icon">Property</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_compose_.typedescriptor.html" class="tsd-kind-icon">Type<wbr>Descriptor</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_compose_.typefactoryfunction.html" class="tsd-kind-icon">Type<wbr>Factory<wbr>Function</a>
-					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_compose_.values.html" class="tsd-kind-icon">Values</a>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_compose_.html#propertycollection" class="tsd-kind-icon">Property<wbr>Collection</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_compose_.html#type" class="tsd-kind-icon">Type</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../modules/_compose_.html#typefunction" class="tsd-kind-icon">Type<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#is_factory_key" class="tsd-kind-icon">IS_<wbr>FACTORY_<wbr>KEY</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#props_key" class="tsd-kind-icon">PROPS_<wbr>KEY</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#createclass" class="tsd-kind-icon">create<wbr>Class</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../modules/_compose_.html#createfactory" class="tsd-kind-icon">create<wbr>Factory</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#createpropertyinstance" class="tsd-kind-icon">create<wbr>Property<wbr>Instance</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#createtypeinstance" class="tsd-kind-icon">create<wbr>Type<wbr>Instance</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#getpropertydescriptors" class="tsd-kind-icon">get<wbr>Property<wbr>Descriptors</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#isfactory" class="tsd-kind-icon">is<wbr>Factory</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#isprimitivetype" class="tsd-kind-icon">is<wbr>Primitive<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-private tsd-is-not-exported">
-						<a href="../modules/_compose_.html#resolvegenericvalue" class="tsd-kind-icon">resolve<wbr>Generic<wbr>Value</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="_compose_.compose.html#factory" class="tsd-kind-icon">factory</a>
 					</li>
 				</ul>
 			</nav>

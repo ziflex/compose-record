@@ -9,6 +9,9 @@ import { isImmutable } from './is-immutable';
  */
 const PROPS_KEY = '__@@DESCRIPTORS@@__';
 
+/**
+ * @private
+ */
 const IS_FACTORY_KEY = '__@@FACTORY@@__';
 
 /**
@@ -20,6 +23,9 @@ function isPrimitiveType(input: any): boolean {
         input === Number;
 }
 
+/**
+ * @private
+ */
 function isFactory(type: any): boolean {
     return type[IS_FACTORY_KEY] != null;
 }
@@ -29,8 +35,8 @@ function isFactory(type: any): boolean {
  * @param input - A factory function.
  * @param - A factory function type.
  */
-function factory<TOut, TIn = any>(input: (value?: TIn) => TOut): TypeFactoryFunction<TOut> {
-    const factory = input as TypeFactoryFunction<TOut>;
+function createFactory<TDef, TArgs = any>(input: (value?: TArgs) => TDef): TypeFactoryFunction<TDef> {
+    const factory = input as TypeFactoryFunction<TDef>;
     factory[IS_FACTORY_KEY] = true;
 
     return factory;
@@ -298,4 +304,6 @@ export function compose<
     );
 }
 
-compose.factory = factory;
+export namespace compose {
+    export const factory = createFactory;
+}

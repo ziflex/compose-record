@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.3.1
+### Fixed
+* TypeScript error ``factory is referenced directly or indirectly in its own type annotation.``.
+
 ## 1.3.0
 ### Added
 * ``factory`` helper function which creates a factory function type.
