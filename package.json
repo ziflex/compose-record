@@ -15,7 +15,8 @@
     "build": "cross-env NODE_ENV=production npm run clean && tsc -b tsconfig.json",
     "test": "rimraf coverage && cross-env NODE_ENV=test nyc mocha",
     "coveralls": "npm test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "doc": "rimraf docs && typedoc --excludeProtected --excludePrivate --out docs && touch docs/.nojekyll"
+    "doc": "rimraf docs && typedoc --excludeProtected --excludePrivate --out docs && touch docs/.nojekyll",
+    "prepublish": "npm run test && npm run build"
   },
   "peerDependencies": {
     "immutable": "^3.8.2"
