@@ -500,7 +500,7 @@ describe('compose', () => {
                 },
             });
 
-            interface User extends Entity {}
+            type User = Entity;
 
             const UserRecord = compose<User>({
                 name: 'User',
@@ -658,7 +658,7 @@ describe('compose', () => {
                 },
             });
 
-            interface User extends Entity {}
+            type User = Entity;
 
             const UserRecord = compose<User>({
                 name: 'User',
@@ -816,13 +816,8 @@ describe('compose', () => {
 
             const u = new GroupRecord({
                 users: {
-                    monsters: [
-                        { name: 'Mike Wazowski' },
-                        { name: 'James P. Sullivan' },
-                    ],
-                    humans: [
-                        { name: 'Boo' },
-                    ],
+                    monsters: [{ name: 'Mike Wazowski' }, { name: 'James P. Sullivan' }],
+                    humans: [{ name: 'Boo' }],
                 },
             });
 
@@ -959,15 +954,15 @@ describe('compose', () => {
                             let result = Role.User;
 
                             switch (value) {
-                            case 'user':
-                                result = Role.User;
-                                break;
-                            case 'admin':
-                                result = Role.Admin;
-                                break;
-                            case 'owner':
-                                result = Role.Owner;
-                                break;
+                                case 'user':
+                                    result = Role.User;
+                                    break;
+                                case 'admin':
+                                    result = Role.Admin;
+                                    break;
+                                case 'owner':
+                                    result = Role.Owner;
+                                    break;
                             }
 
                             return result;
@@ -981,6 +976,42 @@ describe('compose', () => {
             } as any);
 
             expect(u.role).to.eq(Role.Owner);
+        });
+
+        it('should handle circular references', () => {
+            interface User {
+                users: User[];
+            }
+
+            const UserA: any = compose<User>({
+                name: 'Users',
+                properties: {
+                    users: {
+                        type: List,
+                        items: {
+                            type: compose.factory((i) => new UserB(i)),
+                        },
+                    },
+                },
+            });
+
+            const UserB: any = compose<User>({
+                name: 'Users',
+                properties: {
+                    users: {
+                        type: List,
+                        items: {
+                            type: UserA,
+                        },
+                    },
+                },
+            });
+
+            const a = new UserA({ users: [] });
+            const b = new UserB({ users: [{ users: [] }] });
+
+            expect(a).to.not.equal(b);
+            expect(b.users.size).to.eq(1);
         });
     });
 });
