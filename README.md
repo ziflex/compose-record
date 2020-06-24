@@ -2,8 +2,7 @@
 > Type-safe utility library for creating nested Immutable Records
 
 [![npm version](https://badge.fury.io/js/compose-record.svg)](https://www.npmjs.com/package/compose-record)
-[![Build Status](https://secure.travis-ci.org/ziflex/compose-record.svg?branch=master)](http://travis-ci.org/ziflex/compose-record)
-[![Coverage Status](https://coveralls.io/repos/github/ziflex/compose-record/badge.svg?branch=master)](https://coveralls.io/github/ziflex/compose-record)
+[![Build Status](https://github.com/ziflex/compose-record/workflows/build/badge.svg)](https://github.com/ziflex/compose-record/actions)
 
 ## Motivation
 
