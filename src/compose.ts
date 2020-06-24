@@ -1,7 +1,5 @@
 import { Map, Record } from 'immutable';
-import isArray from 'is-array';
 import isPlainObject from 'is-plain-obj';
-import reduce from 'reduce';
 import { isImmutable } from './is-immutable';
 
 /**
@@ -18,9 +16,7 @@ const IS_FACTORY_KEY = '__@@FACTORY@@__';
  * @private
  */
 function isPrimitiveType(input: any): boolean {
-    return input === String ||
-        input === Boolean ||
-        input === Number;
+    return input === String || input === Boolean || input === Number;
 }
 
 /**
@@ -85,7 +81,7 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
         return value;
     }
 
-    if (isArray(value)) {
+    if (Array.isArray(value)) {
         return value.map((gValue: any) => {
             if (desc.items == null) {
                 return createTypeInstance(desc.type, gValue);
@@ -96,7 +92,8 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
     }
 
     if (isPlainObject(value)) {
-        return reduce(value, (res: any, gValue: any, gField: string) => {
+        return Object.keys(value).reduce((res: any, gField: string) => {
+            const gValue = (value as { [key: string]: unknown })[gField];
             const out = res;
             let resolved;
 
@@ -109,7 +106,7 @@ function resolveGenericValue(desc?: TypeDescriptor<any>, value?: any): any {
             out[gField] = resolved;
 
             return out;
-        },            {});
+        }, {});
     }
 
     if (isImmutable(value)) {
@@ -151,13 +148,14 @@ function createClass(name: string, props: PropertyCollection<any>, values: any):
 
     // tslint:disable-next-line:typedef
     function RecordType(v?: Values) {
-        const values = reduce(props, (res: any, field: Property<any>, fName: string) => {
+        const values = Object.keys(props).reduce((res: any, fName: string) => {
+            const field = props[fName] as Property<any>;
             const out = res;
 
             out[fName] = createPropertyInstance(field, v ? v[fName] : undefined);
 
             return out;
-        },                    {});
+        }, {});
 
         return _RecordType(values);
     }
@@ -167,7 +165,10 @@ function createClass(name: string, props: PropertyCollection<any>, values: any):
         return getPropertyDescriptors(RecordType);
     };
     // tslint:disable-next-line:max-line-length
-    (RecordType as any).createPropertyInstance = function <TRec, TArgs = TRec>(prop: Property<TRec>, value?: TArgs): TRec {
+    (RecordType as any).createPropertyInstance = function <TRec, TArgs = TRec>(
+        prop: Property<TRec>,
+        value?: TArgs,
+    ): TRec {
         return createPropertyInstance(prop, value) as TRec;
     };
     RecordType.prototype = _RecordType.prototype;
@@ -192,7 +193,7 @@ export interface Class<TOut, TIn = any> {
 /**
  * Represents an immutable data structure
  */
-export interface Immutable extends Map<string, any> {}
+export type Immutable = Map<string, any>;
 
 export interface Values {
     [prop: string]: any;
@@ -253,19 +254,18 @@ export interface ComposeOptions<T> {
     extends?: Type<any> | Type<any>[];
 }
 
-/** 
+/**
  * Creates a deeply nested Record class.
  * @param opts - List of options
  * @returns Record class with defined properties
  */
-export function compose<
-    TDef,
-    TArgs = TDef
->(opts: ComposeOptions<TDef>): Class<TDef extends Immutable ? TDef : TDef & Immutable, TArgs> {
-    let propTypes: PropertyCollection<any> = opts.properties ?  { ...(opts.properties as any) } : {};
+export function compose<TDef, TArgs = TDef>(
+    opts: ComposeOptions<TDef>,
+): Class<TDef extends Immutable ? TDef : TDef & Immutable, TArgs> {
+    let propTypes: PropertyCollection<any> = opts.properties ? { ...(opts.properties as any) } : {};
 
     if (opts.extends) {
-        const ext: Type<any>[] = isArray(opts.extends) ? opts.extends : [opts.extends];
+        const ext: Type<any>[] = Array.isArray(opts.extends) ? opts.extends : [opts.extends];
 
         // iterate over extending types
         ext.forEach((type: Type<Immutable>) => {
@@ -277,7 +277,9 @@ export function compose<
                     propTypes = { ...props, ...(propTypes as any) };
                 } else {
                     // tslint:disable-next-line:max-line-length
-                    console.warn('Passed a non-composed data structure as extending type. Only composed Records are supported.');
+                    console.warn(
+                        'Passed a non-composed data structure as extending type. Only composed Records are supported.',
+                    );
                 }
             } else {
                 console.warn('Passed a primitive type. Primitives cannot extend Record type');
@@ -285,7 +287,8 @@ export function compose<
         });
     }
 
-    const propValues = reduce(propTypes, (res: any, prop: Property<any>, name: string) => {
+    const propValues = Object.keys(propTypes).reduce((res: any, name: string) => {
+        const prop = propTypes[name] as Property<any>;
         const out = res;
 
         // set record prop type
@@ -295,15 +298,9 @@ export function compose<
         out[name] = createTypeInstance(prop.type, prop.defaultValue);
 
         return out;
-    },                        {});
+    }, {});
 
-    return createClass(
-        opts.name,
-        Object.freeze(propTypes),
-        propValues,
-    );
+    return createClass(opts.name, Object.freeze(propTypes), propValues);
 }
 
-export namespace compose {
-    export const factory = createFactory;
-}
+compose.factory = createFactory;

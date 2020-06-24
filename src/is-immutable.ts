@@ -1,13 +1,4 @@
-import {
-    Iterable,
-    List,
-    Map,
-    OrderedMap,
-    OrderedSet,
-    Seq,
-    Set,
-    Stack,
-} from 'immutable';
+import { Iterable, List, Map, OrderedMap, OrderedSet, Seq, Set, Stack } from 'immutable';
 
 const comparators = [
     List.isList,
@@ -20,10 +11,10 @@ const comparators = [
     Iterable.isIterable,
 ];
 
-export function isImmutable(value: any): boolean {
+export function isImmutable(value: unknown): boolean {
     if (value == null) {
         return false;
     }
 
-    return comparators.some(i => i(value));
+    return comparators.some((i) => i(value));
 }
