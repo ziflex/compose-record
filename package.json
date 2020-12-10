@@ -1,6 +1,6 @@
 {
   "name": "compose-record",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Type-safe utility library for creating nested Immutable Records",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
